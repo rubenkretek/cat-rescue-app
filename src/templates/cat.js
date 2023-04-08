@@ -7,11 +7,13 @@ export default function CatTemplate({ data }) {
   console.log("<<<<<", cat);
 
   return (
-    <div>
-      <h1>{cat.title}</h1>
-      <h2>{cat.location.city}</h2>
-      <Link to="/adopt-a-cat">Back to all cats</Link>
-    </div>
+    <Layout>
+      <div>
+        <h1>{cat.title}</h1>
+        <h2>{cat.location.city}</h2>
+        <Link to="/adopt-a-cat">Back to all cats</Link>
+      </div>
+    </Layout>
   );
 }
 
