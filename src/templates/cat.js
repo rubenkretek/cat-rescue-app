@@ -19,6 +19,47 @@ export default function CatTemplate({ data }) {
           <GatsbyImage image={image} alt={cat.title} />
         </div>
         <div>
+          <ul>
+            {cat.sex && (
+              <li>
+                <span>Sex: </span>
+                {cat.sex}
+              </li>
+            )}
+            <li>
+              <span>Age: </span>NEED TO ADD
+            </li>
+            {cat.colour && (
+              <li>
+                <span>Colour: </span>
+                {cat.colour}
+              </li>
+            )}
+            <li>
+              <span>Can live with other cats: </span>
+              {cat.likesCats ? "Yes" : "No"}
+            </li>
+            <li>
+              <span>Can live with dogs: </span>
+              {cat.likesDogs ? "Yes" : "No"}
+            </li>
+            <li>
+              <span>Can live with children: </span>
+              {cat.likesChildren ? "Yes" : "No"}
+            </li>
+            <li>
+              <span>Likes older families: </span>
+              {cat.olderFamilies ? "Yes" : "No"}
+            </li>
+            {cat.outdoorIndoor && (
+              <li>
+                <span>Indoor cat: </span>
+                {cat.outdoorIndoor}
+              </li>
+            )}
+          </ul>
+        </div>
+        <div>
           <PortableText value={bodyText} />
         </div>
         <Link to="/adopt-a-cat">Back to all cats</Link>
@@ -32,8 +73,18 @@ export const query = graphql`
     sanityCat(slug: { current: { eq: $slug } }) {
       id
       title
+      colour
+      likesCats
+      likesChildren
+      likesDogs
+      olderFamilies
+      sex
+      outdoorIndoor
       location {
         city
+      }
+      breed {
+        name
       }
       mainImage {
         asset {
