@@ -11,13 +11,14 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
 
 export default function Layout({ children }) {
   return (
-    <div style={{ margin: `0 auto`, maxWidth: 650, padding: `0 1rem` }}>
+    <div>
       <CssBaseline />
       <Header />
-      {children}
+      <Container maxWidth="xl">{children}</Container>
       <Footer />
     </div>
   );
