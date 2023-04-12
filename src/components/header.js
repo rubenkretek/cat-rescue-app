@@ -12,8 +12,12 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "gatsby";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [
+  { label: "Adopt a cat", slug: "adopt-a-cat" },
+  { label: "Locations", slug: "locations" },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -88,9 +92,11 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <Link to={`/${page.slug}`}>
+                  <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.label}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -120,7 +126,7 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                <Link to={`/${page.slug}`}>{page.label}</Link>
               </Button>
             ))}
           </Box>
