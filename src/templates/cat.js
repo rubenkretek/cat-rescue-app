@@ -4,65 +4,49 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import { PortableText } from "@portabletext/react";
 
+// Components
+import InfoCard from "../components/Info/InfoCard";
+
+// MUI/Styling
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Unstable_Grid2";
+import PlaceIcon from "@mui/icons-material/Place";
+
 export default function CatTemplate({ data }) {
   const cat = data.sanityCat;
   console.log("<<<<<", cat);
   const image = cat.mainImage.asset?.gatsbyImageData;
   const bodyText = cat.body;
+
   console.log("<<<<<bodyText", bodyText);
   return (
     <Layout>
       <div>
-        <h1>{cat.title}</h1>
-        <h2>{cat.location.city}</h2>
-        <div>
-          <GatsbyImage image={image} alt={cat.title} />
-        </div>
-        <div>
-          <ul>
-            {cat.sex && (
-              <li>
-                <span>Sex: </span>
-                {cat.sex}
-              </li>
-            )}
-            <li>
-              <span>Age: </span>NEED TO ADD
-            </li>
-            {cat.colour && (
-              <li>
-                <span>Colour: </span>
-                {cat.colour}
-              </li>
-            )}
-            <li>
-              <span>Can live with other cats: </span>
-              {cat.likesCats ? "Yes" : "No"}
-            </li>
-            <li>
-              <span>Can live with dogs: </span>
-              {cat.likesDogs ? "Yes" : "No"}
-            </li>
-            <li>
-              <span>Can live with children: </span>
-              {cat.likesChildren ? "Yes" : "No"}
-            </li>
-            <li>
-              <span>Likes older families: </span>
-              {cat.olderFamilies ? "Yes" : "No"}
-            </li>
-            {cat.outdoorIndoor && (
-              <li>
-                <span>Indoor cat: </span>
-                {cat.outdoorIndoor}
-              </li>
-            )}
-          </ul>
-        </div>
-        <div>
-          <PortableText value={bodyText} />
-        </div>
-        <Link to="/adopt-a-cat">Back to all cats</Link>
+        <Grid container spacing={4}>
+          <Grid xs={12} md={6}>
+            <Box>
+              <GatsbyImage image={image} alt={cat.name} />
+            </Box>
+          </Grid>
+
+          <Grid xs={12} md={6}>
+            <Box>
+              <h1>{cat.name}</h1>
+              <h2>
+                <PlaceIcon />
+                {cat.location.city}
+              </h2>
+
+              <div>
+                <InfoCard catInfo={cat.catInfo} />
+              </div>
+              <div>
+                <PortableText value={bodyText} />
+              </div>
+              <Link to="/adopt-a-cat">Back to all cats</Link>
+            </Box>
+          </Grid>
+        </Grid>
       </div>
     </Layout>
   );
@@ -72,19 +56,21 @@ export const query = graphql`
   query ($slug: String!) {
     sanityCat(slug: { current: { eq: $slug } }) {
       id
-      title
-      colour
-      likesCats
-      likesChildren
-      likesDogs
-      olderFamilies
-      sex
-      outdoorIndoor
+      name
+      catInfo {
+        dob(fromNow: true)
+        likesCats
+        likesChildren
+        likesDogs
+        likesOlderFamilies
+        likesOutdoorIndoor
+        sex
+        breed {
+          name
+        }
+      }
       location {
         city
-      }
-      breed {
-        name
       }
       mainImage {
         asset {
