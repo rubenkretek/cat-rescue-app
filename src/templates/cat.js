@@ -12,7 +12,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 import PlaceIcon from "@mui/icons-material/Place";
-import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import Paper from "@mui/material/Paper";
 
 export default function CatTemplate({ data }) {
   const cat = data.sanityCat;
@@ -23,33 +25,41 @@ export default function CatTemplate({ data }) {
   console.log("<<<<<bodyText", bodyText);
   return (
     <Layout>
-      <div>
-        <Grid container spacing={4}>
-          <Grid xs={12} md={3}>
-            <Box
-              sx={{ borderRadius: "100%", overflow: "hidden", margin: "25px" }}
-            >
+      <Grid container spacing={4}>
+        <Grid xs={12} sm={5} md={4}>
+          <Paper elevation={3} sx={{ padding: 3, position: "sticky", top: 16 }}>
+            <Box sx={{ mb: 3, borderRadius: 1, overflow: "hidden" }}>
               <GatsbyImage image={image} alt={cat.name} />
             </Box>
             <InfoCard catInfo={cat.catInfo} />
-          </Grid>
-
-          <Grid xs={12} md={9}>
-            <Box>
-              <h1>{cat.name}</h1>
-              <h2>
-                <PlaceIcon />
-                {cat.location.city}
-              </h2>
-              <div>
-                <PortableText value={bodyText} />
-              </div>
-              <Button variant="contained">Enquire about {cat.name}</Button>
-              <Link to="/adopt-a-cat">Back to all cats</Link>
-            </Box>
-          </Grid>
+          </Paper>
         </Grid>
-      </div>
+
+        <Grid xs={12} sm={7} md={8}>
+          <Box>
+            <h1>{cat.name}</h1>
+            <h2>
+              <PlaceIcon />
+              {cat.location.city}
+            </h2>
+            <div>
+              <PortableText value={bodyText} />
+            </div>
+            <Stack
+              spacing={2}
+              direction="row"
+              divider={<Divider orientation="vertical" flexItem />}
+            >
+              <Link to="/adopt-a-cat">
+                <Button variant="outlined">Back to all cats</Button>
+              </Link>
+              <Link to="/adopt-a-cat">
+                <Button variant="contained">Enquire about {cat.name}</Button>
+              </Link>
+            </Stack>
+          </Box>
+        </Grid>
+      </Grid>
     </Layout>
   );
 }
@@ -79,8 +89,8 @@ export const query = graphql`
           gatsbyImageData(
             fit: FILLMAX
             placeholder: BLURRED
-            height: 350
-            width: 350
+            height: 600
+            width: 600
           )
         }
       }

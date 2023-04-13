@@ -1,5 +1,9 @@
 import React from "react";
 
+// MUI/Styling
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
 function InfoItem({ label, value }) {
   if (value === true) {
     value = "Yes";
@@ -8,9 +12,18 @@ function InfoItem({ label, value }) {
     value = "No";
   }
   return (
-    <div>
-      {label}: {value}
-    </div>
+    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box>
+        <Typography variant="subtitle1" component="span">
+          {label}
+        </Typography>
+      </Box>
+      <Box>
+        <Typography variant="subtitle2" component="span">
+          {value}
+        </Typography>
+      </Box>
+    </Box>
   );
 }
 

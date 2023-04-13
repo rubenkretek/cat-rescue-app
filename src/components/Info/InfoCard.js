@@ -3,8 +3,8 @@ import InfoItem from "./InfoItem";
 
 // MUI/Styling
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Unstable_Grid2";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
 
 function InfoCard({ catInfo }) {
   console.log("<<<<catInfo", catInfo);
@@ -12,37 +12,23 @@ function InfoCard({ catInfo }) {
   const dobString = dob ? dob : "Unknown";
   return (
     <Box>
-      <Card>
-        <Grid container spacing={2}>
-          <Grid xs={12} md={6}>
-            <InfoItem label="Age" value={dobString} />
-          </Grid>
-          <Grid xs={12} md={6}>
-            <InfoItem
-              label="Can live with other cats"
-              value={catInfo.likesCats}
-            />
-          </Grid>
-          <Grid xs={12} md={6}>
-            <InfoItem
-              label="Can live with other cats"
-              value={catInfo.likesCats}
-            />
-          </Grid>
-          <Grid xs={12} md={6}>
-            <InfoItem
-              label="Can live with children"
-              value={catInfo.likesChildren}
-            />
-          </Grid>
-          <Grid xs={12} md={6}>
-            <InfoItem
-              label="Likes older families"
-              value={catInfo.likesOlderFamilies}
-            />
-          </Grid>
-        </Grid>
-      </Card>
+      <Stack
+        spacing={2}
+        direction="column"
+        divider={<Divider orientation="horizontal" flexItem />}
+      >
+        <InfoItem label="Age" value={dobString} />
+        <InfoItem label="Can live with other cats" value={catInfo.likesCats} />
+        <InfoItem label="Can live with other dogs" value={catInfo.likesDogs} />
+        <InfoItem
+          label="Can live with children"
+          value={catInfo.likesChildren}
+        />
+        <InfoItem
+          label="Likes older families"
+          value={catInfo.likesOlderFamilies}
+        />
+      </Stack>
     </Box>
   );
 }
