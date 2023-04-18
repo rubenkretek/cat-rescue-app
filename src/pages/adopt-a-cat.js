@@ -1,30 +1,66 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from "../components/layout";
+import CatCard from "../components/CatCard";
 
-const AdoptACat = () => {
+// MUI/Styling
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
+
+export const Head = () => <title>Adopt A Cat</title>;
+
+const AdoptACat = (props) => {
+  console.log("<<<<props", props);
+  const cats = props.data.allSanityCat.edges;
+  console.log("<<<<cats", cats);
   return (
     <Layout>
       <main>
         <h1>This will eventually be a list of cats!</h1>
         <p>For now here are a couple hardcoded links:</p>
-        <ul>
-          <li>
-            <Link to="/adopt-a-cat/kimmi">Kimmi</Link>
-          </li>
-          <li>
-            <Link to="/adopt-a-cat/cardi">Cardi</Link>
-          </li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
+        <Grid container spacing={2}>
+          {cats.map((cat) => {
+            return (
+              <Grid item xs={6} md={4}>
+                <CatCard
+                  title={cat.node.name}
+                  image={cat.node.mainImage.asset.gatsbyImageData}
+                  slug={cat.node.slug.current}
+                  key={cat.node.id}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
       </main>
     </Layout>
   );
 };
 
-export const Head = () => <title>Adopt A Cat</title>;
-
 export default AdoptACat;
+
+export const query = graphql`
+  query getAllCats {
+    allSanityCat(filter: { slug: { current: { ne: null } } }) {
+      edges {
+        node {
+          id
+          name
+          slug {
+            current
+          }
+          mainImage {
+            asset {
+              gatsbyImageData(
+                fit: FILLMAX
+                placeholder: BLURRED
+                height: 250
+                width: 350
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,13 +16,48 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "gatsby";
 
-const pages = [
-  { label: "Adopt a cat", slug: "adopt-a-cat" },
-  { label: "Locations", slug: "locations" },
-];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
+  const data = useStaticQuery(graphql`
+    query MenuItemsQuery {
+      allSanityMenuItems {
+        edges {
+          node {
+            id
+            label
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+  const menuItems = data.allSanityMenuItems.edges;
+  const defaultMenuItems = [
+    {
+      node: {
+        id: "adopt-a-cat",
+        label: "Adopt a cat",
+        slug: { current: "adopt-a-cat" },
+      },
+    },
+    {
+      node: {
+        id: "locations",
+        label: "Locations",
+        slug: { current: "locations" },
+      },
+    },
+  ];
+  let combined;
+
+  useEffect({
+    combined = menuItems.concat(defaultMenuItems);
+  }, [])
+  console.log("<<<<mcombined", combined);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -91,10 +128,12 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <Link to={`/${page.slug}`}>
-                  <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page.label}</Typography>
+              {menuItems.map((menu) => (
+                <Link to={`/${menu.node.slug}`}>
+                  <MenuItem key={menu.node.label} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      {menu.node.label}
+                    </Typography>
                   </MenuItem>
                 </Link>
               ))}
@@ -120,14 +159,14 @@ function ResponsiveAppBar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Link to={`/${page.slug}`}>
+            {menuItems.map((menu) => (
+              <Link to={`/${menu.node.slug}`}>
                 <Button
-                  key={page}
+                  key={menu.node.id}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page.label}
+                  {menu.node.label}
                 </Button>
               </Link>
             ))}
