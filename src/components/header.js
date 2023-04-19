@@ -26,8 +26,12 @@ function ResponsiveAppBar() {
           node {
             id
             label
-            slug {
-              current
+            page {
+              id
+              slug {
+                current
+              }
+              title
             }
           }
         }
@@ -35,6 +39,8 @@ function ResponsiveAppBar() {
     }
   `);
   const menuItems = data.allSanityMenuItems.edges;
+  console.log("<<<<<menuitems", menuItems);
+
   const defaultMenuItems = [
     {
       node: {
@@ -51,12 +57,6 @@ function ResponsiveAppBar() {
       },
     },
   ];
-  let combined;
-
-  useEffect({
-    combined = menuItems.concat(defaultMenuItems);
-  }, [])
-  console.log("<<<<mcombined", combined);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -129,7 +129,7 @@ function ResponsiveAppBar() {
               }}
             >
               {menuItems.map((menu) => (
-                <Link to={`/${menu.node.slug}`}>
+                <Link to={`/${menu.node.page?.slug.current}`}>
                   <MenuItem key={menu.node.label} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
                       {menu.node.label}
@@ -160,7 +160,7 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {menuItems.map((menu) => (
-              <Link to={`/${menu.node.slug}`}>
+              <Link to={`/${menu.node.page?.slug.current}`}>
                 <Button
                   key={menu.node.id}
                   onClick={handleCloseNavMenu}
@@ -170,6 +170,14 @@ function ResponsiveAppBar() {
                 </Button>
               </Link>
             ))}
+            <Link to={`/adopt-a-cat/`}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Adopt a cat
+              </Button>
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
