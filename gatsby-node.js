@@ -65,8 +65,42 @@ exports.createPages = async ({ graphql, actions }) => {
         context: { slug: edge.node.slug.current },
       });
     });
-    //Locations - END
   });
+  //Locations - END
 
-  return Promise.all([catPages, locationPages]);
+  // Pages
+  const pages = await graphql(`
+    {
+      allSanityPage(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+            title
+          }
+        }
+      }
+    }
+  `).then((result) => {
+    if (result.errors) {
+      throw result.errors;
+    }
+
+    const pages = result.data.allSanityPage.edges || [];
+
+    pages.forEach((edge, index) => {
+      const path = `/${edge.node.slug.current}`;
+
+      createPage({
+        path,
+        component: require.resolve("./src/templates/page.js"),
+        context: { slug: edge.node.slug.current },
+      });
+    });
+  });
+  //pages - END
+
+  return Promise.all([catPages, locationPages, pages]);
 };
