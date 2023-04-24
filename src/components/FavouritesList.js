@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {  useState } from "react";
 import { useFavourites } from "../FavouritesContext";
 
 import { useStaticQuery, graphql } from "gatsby";
@@ -41,7 +41,7 @@ const FavouriteList = () => {
   const [favouriteIDs, setFavouriteIDs] = useFavourites();
 
   const allItems = data.allSanityCat.edges;
-  const favItems = allItems.filter((item) =>
+  const favItems = allItems.filter((item) =>  
     favouriteIDs.includes(item.node.id)
   );
 

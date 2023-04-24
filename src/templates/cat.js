@@ -3,7 +3,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useFavourites, useFavouritesUpdate } from "../FavouritesContext";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Layout from "../components/layout";
 import { PortableText } from "@portabletext/react";
 
 // Components
@@ -32,7 +31,7 @@ export default function CatTemplate({ data }) {
   // const [addFavourite] = useContext(FavouritesContext);
 
   return (
-    <Layout>
+    <main>
       <Grid container spacing={4}>
         <Grid xs={12} sm={5} md={4}>
           <Paper elevation={3} sx={{ padding: 3, position: "sticky", top: 16 }}>
@@ -69,7 +68,7 @@ export default function CatTemplate({ data }) {
           </Box>
         </Grid>
       </Grid>
-    </Layout>
+    </main>
   );
 }
 

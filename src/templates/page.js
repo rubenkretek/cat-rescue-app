@@ -7,13 +7,11 @@ export default function pageTemplate({ data }) {
   console.log("<<<<<page", page);
 
   return (
-    <Layout>
-      <div>
-        <h1>{page.title}</h1>
-        <p>{page.description}</p>
-        <Link to="/">Back to home</Link>
-      </div>
-    </Layout>
+    <div>
+      <h1>{page.title}</h1>
+      <p>{page.description}</p>
+      <Link to="/">Back to home</Link>
+    </div>
   );
 }
 
