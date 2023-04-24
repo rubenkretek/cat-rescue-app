@@ -1,19 +1,38 @@
 import React from "react";
 import Layout from "./src/components/Layout";
+import { FavouritesProvider } from "./src/FavouritesContext";
+
+// Styles
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import "./src/styles/index.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import CssBaseline from "@mui/material/CssBaseline";
 
 // Logs when the client route changes
-// exports.onRouteUpdate = ({ location, prevLocation }) => {
+// export const onRouteUpdate = ({ location, prevLocation }) => {
 //   console.log("new pathname", location.pathname);
 //   console.log("old pathname", prevLocation ? prevLocation.pathname : null);
 // };
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
 // Wraps every page in a component
 export const wrapRootElement = ({ element, props }) => {
-  console.log("<<<<gatsby brows");
-
   return (
     <>
-      <Layout>{element}</Layout>
+      <FavouritesProvider>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Layout>{element}</Layout>
+        </ThemeProvider>
+      </FavouritesProvider>
     </>
   );
 };
