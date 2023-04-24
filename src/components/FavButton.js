@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useFavourites } from "../FavouritesContext";
 import Button from "@mui/material/Button";
 
@@ -8,8 +8,6 @@ function FavButton({ currentID }) {
 
   useEffect(() => {
     if (favouriteIDs.includes(currentID)) {
-      console.log("<<<<matches");
-
       setIsFav(true);
     }
   }, []);
@@ -29,7 +27,7 @@ function FavButton({ currentID }) {
   };
   return (
     <Button variant="outlined" onClick={updateFav}>
-      {!isFav ? "Favourite" : "Remove"}
+      {isFav ? "Remove" : "Favourite"}
     </Button>
   );
 }

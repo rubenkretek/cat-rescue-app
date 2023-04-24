@@ -10,7 +10,7 @@ export const Head = () => <title>Adopt A Cat</title>;
 
 const AdoptACat = (props) => {
   console.log("<<<<props", props);
-  const cats = props.data.allSanityCat.edges;
+  const cats = props.data?.allSanityCat.edges;
   console.log("<<<<cats", cats);
   return (
     <main>

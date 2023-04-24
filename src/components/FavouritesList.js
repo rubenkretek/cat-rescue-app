@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useFavourites } from "../FavouritesContext";
 
 import { useStaticQuery, graphql } from "gatsby";
@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 const FavouriteList = () => {
   const data = useStaticQuery(graphql`
-    query getAllCats {
+    query getFavCats {
       allSanityCat(filter: { slug: { current: { ne: null } } }) {
         edges {
           node {
@@ -41,7 +41,7 @@ const FavouriteList = () => {
   const [favouriteIDs, setFavouriteIDs] = useFavourites();
 
   const allItems = data.allSanityCat.edges;
-  const favItems = allItems.filter((item) =>  
+  const favItems = allItems.filter((item) =>
     favouriteIDs.includes(item.node.id)
   );
 

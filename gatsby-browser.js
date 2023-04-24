@@ -3,8 +3,8 @@ import Layout from "./src/components/Layout";
 import { FavouritesProvider } from "./src/FavouritesContext";
 
 // Styles
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./src/styles/index.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";

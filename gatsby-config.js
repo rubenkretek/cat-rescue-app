@@ -18,7 +18,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sass",
-    "gatsby-plugin-google-gtag",
+    //"gatsby-plugin-google-gtag",
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
