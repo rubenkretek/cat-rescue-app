@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+
+import { useFavourites, useFavouritesUpdate } from "../FavouritesContext";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
@@ -6,6 +8,9 @@ import { PortableText } from "@portabletext/react";
 
 // Components
 import InfoCard from "../components/Info/InfoCard";
+import FavButton from "../components/FavButton";
+
+// Context
 
 // MUI/Styling
 import Box from "@mui/material/Box";
@@ -18,11 +23,14 @@ import Paper from "@mui/material/Paper";
 
 export default function CatTemplate({ data }) {
   const cat = data.sanityCat;
-  console.log("<<<<<", cat);
   const image = cat.mainImage.asset?.gatsbyImageData;
   const bodyText = cat.body;
+  const favouriteIDs = useFavourites();
+  //let isFav = favouriteIDs.includes(cat.id);
+  console.log("isFav<<<<", favouriteIDs);
 
-  console.log("<<<<<bodyText", bodyText);
+  // const [addFavourite] = useContext(FavouritesContext);
+
   return (
     <Layout>
       <Grid container spacing={4}>
@@ -32,6 +40,7 @@ export default function CatTemplate({ data }) {
               <GatsbyImage image={image} alt={cat.name} />
             </Box>
             <InfoCard catInfo={cat.catInfo} />
+            <FavButton currentID={cat.id} />
           </Paper>
         </Grid>
 

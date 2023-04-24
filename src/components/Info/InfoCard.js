@@ -7,7 +7,6 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 
 function InfoCard({ catInfo }) {
-  console.log("<<<<catInfo", catInfo);
   const dob = catInfo.dob ? catInfo.dob.replace(/ago/g, "old") : null;
   const dobString = dob ? dob : "Unknown";
   return (

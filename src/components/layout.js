@@ -3,6 +3,7 @@ import React from "react";
 //Components
 import Header from "./header";
 import Footer from "./footer";
+import { FavouritesProvider } from "../FavouritesContext";
 
 // Styles
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -23,12 +24,14 @@ const darkTheme = createTheme({
 export default function Layout({ children }) {
   return (
     <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Header />
-      <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
-        {children}
-      </Container>
-      <Footer />
+      <FavouritesProvider>
+        <CssBaseline />
+        <Header />
+        <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
+          {children}
+        </Container>
+        <Footer />
+      </FavouritesProvider>
     </ThemeProvider>
   );
 }
