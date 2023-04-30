@@ -1,22 +1,20 @@
 import React, { useContext, useState, createContext } from "react";
 
 const FavouritesContext = createContext();
-const FavouritesUpdateContext = createContext();
 
 export function useFavourites() {
   return useContext(FavouritesContext);
 }
 
-export function useFavouritesUpdate() {
-  return useContext(FavouritesUpdateContext);
-}
-
 export function FavouritesProvider({ children }) {
   const [favouriteIDs, setFavouriteIDs] = useState([]);
 
-  function modifyFavourite(id) {
-    console.log("|favourite added");
-    console.log("|favourite added", id);
+  function modifyFavourite(currentID) {
+    if (favouriteIDs.includes(currentID)) {
+      setFavouriteIDs([...favouriteIDs.filter((el) => el !== currentID)]);
+    } else {
+      setFavouriteIDs([...favouriteIDs, currentID]);
+    }
   }
 
   return (
