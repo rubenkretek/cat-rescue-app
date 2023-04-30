@@ -25,10 +25,7 @@ export default function CatTemplate({ data }) {
   const image = cat.mainImage.asset?.gatsbyImageData;
   const bodyText = cat.body;
   const favouriteIDs = useFavourites();
-  //let isFav = favouriteIDs.includes(cat.id);
   console.log("isFav<<<<", favouriteIDs);
-
-  // const [addFavourite] = useContext(FavouritesContext);
 
   return (
     <main>

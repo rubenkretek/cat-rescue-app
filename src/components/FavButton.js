@@ -3,7 +3,7 @@ import { useFavourites } from "../FavouritesContext";
 import Button from "@mui/material/Button";
 
 function FavButton({ currentID }) {
-  const [favouriteIDs, setFavouriteIDs] = useFavourites();
+  const { favouriteIDs, setFavouriteIDs, modifyFavourite } = useFavourites();
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
@@ -22,11 +22,9 @@ function FavButton({ currentID }) {
       setFavouriteIDs([...favouriteIDs.filter((el) => el !== currentID)]);
     }
     setIsFav(!isFav);
-
-    // setFavouriteIDs([...favouriteIDs, currentID]);
   };
   return (
-    <Button variant="outlined" onClick={updateFav}>
+    <Button variant="outlined" onClick={() => modifyFavourite(currentID)}>
       {isFav ? "Remove" : "Favourite"}
     </Button>
   );

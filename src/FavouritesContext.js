@@ -14,15 +14,16 @@ export function useFavouritesUpdate() {
 export function FavouritesProvider({ children }) {
   const [favouriteIDs, setFavouriteIDs] = useState([]);
 
-  function modifyFavourite() {
-    console.log("<<<favourite added");
+  function modifyFavourite(id) {
+    console.log("|favourite added");
+    console.log("|favourite added", id);
   }
 
   return (
-    <FavouritesContext.Provider value={[favouriteIDs, setFavouriteIDs]}>
-      <FavouritesUpdateContext.Provider value={modifyFavourite}>
-        {children}
-      </FavouritesUpdateContext.Provider>
+    <FavouritesContext.Provider
+      value={{ favouriteIDs, setFavouriteIDs, modifyFavourite }}
+    >
+      {children}
     </FavouritesContext.Provider>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useFavourites } from "../FavouritesContext";
 
 import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
@@ -9,6 +10,8 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { RemoveCircle } from "@mui/icons-material";
 
 const FavouriteList = () => {
   const data = useStaticQuery(graphql`
@@ -26,8 +29,8 @@ const FavouriteList = () => {
                 gatsbyImageData(
                   fit: FILLMAX
                   placeholder: BLURRED
-                  height: 250
-                  width: 350
+                  height: 35
+                  width: 35
                 )
               }
             }
@@ -38,7 +41,7 @@ const FavouriteList = () => {
   `);
 
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [favouriteIDs, setFavouriteIDs] = useFavourites();
+  const { favouriteIDs } = useFavourites();
 
   const allItems = data.allSanityCat.edges;
   const favItems = allItems.filter((item) =>
@@ -52,6 +55,7 @@ const FavouriteList = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  console.log("|favitems: ", favItems);
 
   return (
     <>
@@ -76,11 +80,18 @@ const FavouriteList = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {favItems.map((item) => (
-          <MenuItem key={item.node.id} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{item.node.name}</Typography>
-          </MenuItem>
-        ))}
+        {favItems.map((item) => {
+          const image = item.node.mainImage?.asset?.gatsbyImageData;
+          console.log("|item: ", item);
+
+          return (
+            <MenuItem key={item.node.id} onClick={handleCloseUserMenu}>
+              <GatsbyImage image={image} alt={item.node.name} />
+              <Typography textAlign="center">{item.node.name}</Typography>
+              <RemoveCircle />
+            </MenuItem>
+          );
+        })}
       </Menu>
     </>
   );
