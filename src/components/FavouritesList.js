@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFavourites } from "../FavouritesContext";
 
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 import Avatar from "@mui/material/Avatar";
@@ -9,9 +9,10 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import { RemoveCircle } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { Padding, RemoveCircle } from "@mui/icons-material";
 
 const FavouriteList = () => {
   const data = useStaticQuery(graphql`
@@ -41,7 +42,7 @@ const FavouriteList = () => {
   `);
 
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const { favouriteIDs } = useFavourites();
+  const { favouriteIDs, modifyFavourite } = useFavourites();
 
   const allItems = data.allSanityCat.edges;
   const favItems = allItems.filter((item) =>
@@ -82,14 +83,44 @@ const FavouriteList = () => {
       >
         {favItems.map((item) => {
           const image = item.node.mainImage?.asset?.gatsbyImageData;
-          console.log("|item: ", item);
 
           return (
-            <MenuItem key={item.node.id} onClick={handleCloseUserMenu}>
-              <GatsbyImage image={image} alt={item.node.name} />
-              <Typography textAlign="center">{item.node.name}</Typography>
-              <RemoveCircle />
-            </MenuItem>
+            <Stack
+              key={item.node.id}
+              sx={{
+                justifyContent: "space-between",
+                padding: "0",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Link to={`/adopt-a-cat/${item.node.slug.current}`}>
+                  <Button variant="text">
+                    <Box sx={{ padding: "0px 5px 0px 5px" }}>
+                      <GatsbyImage image={image} alt={item.node.name} />
+                    </Box>
+                    <Typography
+                      textAlign="left"
+                      sx={{ margin: "0px 5px 0px 5px" }}
+                    >
+                      {item.node.name}
+                    </Typography>
+                  </Button>
+                </Link>
+                <IconButton
+                  aria-label="delete"
+                  color="secondary"
+                  onClick={() => modifyFavourite(item.node.id)}
+                >
+                  <RemoveCircle />
+                </IconButton>
+              </Box>
+            </Stack>
           );
         })}
       </Menu>
