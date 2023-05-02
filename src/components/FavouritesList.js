@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Padding, RemoveCircle } from "@mui/icons-material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const FavouriteList = () => {
   const data = useStaticQuery(graphql`
@@ -61,8 +62,8 @@ const FavouriteList = () => {
   return (
     <>
       <Tooltip title="Open favourites">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+          <FavoriteIcon />
         </IconButton>
       </Tooltip>
       <Menu
