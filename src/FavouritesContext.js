@@ -1,4 +1,4 @@
-import React, { useContext, useState, createContext } from "react";
+import React, { useContext, useState, createContext, useEffect } from "react";
 
 const FavouritesContext = createContext();
 
@@ -18,6 +18,16 @@ export function FavouritesProvider({ children }) {
       setFavouriteIDs([...favouriteIDs, currentID]);
     }
   }
+
+  useEffect(() => {
+    const localFavouriteIDs = JSON.parse(localStorage.getItem("favouriteIDs"));
+    if (!localFavouriteIDs) return;
+    setFavouriteIDs(localFavouriteIDs);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favouriteIDs", JSON.stringify(favouriteIDs));
+  }, [favouriteIDs]);
 
   return (
     <FavouritesContext.Provider
