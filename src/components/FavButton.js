@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFavourites } from "../FavouritesContext";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";

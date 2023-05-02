@@ -4,7 +4,6 @@ import { useFavourites } from "../FavouritesContext";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
@@ -12,7 +11,7 @@ import Menu from "@mui/material/Menu";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Padding, RemoveCircle } from "@mui/icons-material";
+import { RemoveCircle } from "@mui/icons-material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const FavouriteList = () => {
