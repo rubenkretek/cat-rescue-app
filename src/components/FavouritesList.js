@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFavourites } from "../FavouritesContext";
+import { useFavourites } from "../context/FavouritesContext";
 
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";

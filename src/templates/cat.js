@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { useFavourites, useFavouritesUpdate } from "../FavouritesContext";
+import {
+  useFavourites,
+  useFavouritesUpdate,
+} from "../context/FavouritesContext";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { PortableText } from "@portabletext/react";
