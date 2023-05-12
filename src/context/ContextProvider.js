@@ -1,5 +1,6 @@
 import React, { useState, createContext, useMemo } from "react";
 import { FavouritesProvider } from "./FavouritesContext";
+import { SiteSettingsProvider } from "./SiteSettingsProvider";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -25,16 +26,17 @@ export function ContextProvider({ children }) {
       }),
     [mode]
   );
-  console.log("|theme", mode);
 
   return (
-    <FavouritesProvider>
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </FavouritesProvider>
+    <SiteSettingsProvider>
+      <FavouritesProvider>
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </FavouritesProvider>
+    </SiteSettingsProvider>
   );
 }
