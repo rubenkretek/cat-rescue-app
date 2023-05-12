@@ -10,8 +10,6 @@ export function FavouritesProvider({ children }) {
   const [favouriteIDs, setFavouriteIDs] = useState([]);
 
   function modifyFavourite(currentID) {
-    console.log("|Modifyfav ran");
-
     if (favouriteIDs.includes(currentID)) {
       setFavouriteIDs([...favouriteIDs.filter((el) => el !== currentID)]);
     } else {

@@ -30,7 +30,6 @@ export function SiteSettingsProvider({ children }) {
       }
     }
   `);
-  console.log("|| data", data);
 
   const siteSettings = data.allSanityBranding.edges[0].node;
 

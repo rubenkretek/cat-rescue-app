@@ -56,7 +56,6 @@ const FavouriteList = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  console.log("|favitems: ", favItems);
 
   return (
     <>

@@ -55,7 +55,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 function ThemeToggleButton() {
   const { toggleColorMode } = React.useContext(ColorModeContext);
-  console.log("|colorMode", toggleColorMode);
 
   return (
     <>
