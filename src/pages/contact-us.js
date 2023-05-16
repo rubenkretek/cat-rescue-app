@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 import LocationCard from "../components/LocationCard";
 
 const Locations = () => {
@@ -33,8 +34,6 @@ const Locations = () => {
   `);
 
   const locations = data.allSanityLocation.edges;
-  console.log("| data");
-  console.log("| data", locations);
 
   return (
     <main>
@@ -49,13 +48,20 @@ const Locations = () => {
         direction="column"
         justifyContent="flex-start"
         alignItems="stretch"
-        spacing={2}
+        spacing={4}
         component="ul"
         sx={{ listStyle: "none", p: 0 }}
       >
         {locations.map((location) => {
           const locationData = location.node;
-          return <LocationCard locationData={locationData} />;
+          console.log("|loca", locationData);
+
+          return (
+            <Box>
+              <h2>{location.node.city}</h2>
+              <LocationCard locationData={locationData} />
+            </Box>
+          );
         })}
       </Stack>
     </main>

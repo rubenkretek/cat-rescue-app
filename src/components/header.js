@@ -150,6 +150,11 @@ function ResponsiveAppBar() {
                 Adopt a cat
               </Button>
             </Link>
+            <Link to={`/contact-us`}>
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Contact Us
+              </Button>
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
