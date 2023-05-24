@@ -1,9 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 
-import {
-  useFavourites,
-  useFavouritesUpdate,
-} from "../context/FavouritesContext";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { PortableText } from "@portabletext/react";
@@ -27,8 +23,6 @@ export default function CatTemplate({ data }) {
   const cat = data.sanityCat;
   const image = cat.mainImage.asset?.gatsbyImageData;
   const bodyText = cat.body;
-  const favouriteIDs = useFavourites();
-  console.log("isFav<<<<", favouriteIDs);
 
   return (
     <main>
