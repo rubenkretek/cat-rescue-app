@@ -2,6 +2,8 @@ import { graphql } from "gatsby";
 import * as React from "react";
 import Hero from "../components/Hero";
 import Block from "../components/Block";
+import LatestCats from "../components/LatestCats";
+import LatestBlog from "../components/LatestBlog";
 
 const IndexPage = ({ data }) => {
   const { headline, heroImage, blocks } = data.allSanityHomePage.edges[0].node;
@@ -19,6 +21,8 @@ const IndexPage = ({ data }) => {
           />
         );
       })}
+      <LatestCats />
+      <LatestBlog />
     </main>
   );
 };
