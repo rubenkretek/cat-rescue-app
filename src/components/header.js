@@ -49,7 +49,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="transparent">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -132,29 +132,30 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {menuItems.map((menu) => (
-              <Link to={`/${menu.node.page?.slug.current}`}>
-                <Button
-                  key={menu.node.id}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {menu.node.label}
-                </Button>
-              </Link>
-            ))}
-            <Link to={`/adopt-a-cat/`}>
               <Button
+                component={Link}
+                to={`/${menu.node.page?.slug.current}`}
+                key={menu.node.id}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "black", display: "block" }}
               >
-                Adopt a cat
+                {menu.node.label}
               </Button>
-            </Link>
-            <Link to={`/contact-us`}>
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                Contact Us
-              </Button>
-            </Link>
+            ))}
+            <Button
+              component={Link}
+              to={`/adopt-a-cat/`}
+              sx={{ my: 2, color: "black", display: "block" }}
+            >
+              Adopt a cat
+            </Button>
+            <Button
+              component={Link}
+              to={`/contact-us`}
+              sx={{ my: 2, color: "black", display: "block" }}
+            >
+              Contact Us
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

@@ -60,7 +60,12 @@ const FavouriteList = () => {
   return (
     <>
       <Tooltip title="Open favourites">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+        <IconButton
+          onClick={handleOpenUserMenu}
+          color="primary"
+          variant="outlined"
+          sx={{ borderRadius: "3px", border: 1 }}
+        >
           <FavoriteIcon />
         </IconButton>
       </Tooltip>
