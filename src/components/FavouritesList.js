@@ -64,6 +64,7 @@ const FavouriteList = () => {
           onClick={handleOpenUserMenu}
           color="primary"
           variant="outlined"
+          size="small"
           sx={{ borderRadius: "3px", border: 1 }}
         >
           <FavoriteIcon />

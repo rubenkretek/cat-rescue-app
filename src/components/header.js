@@ -130,7 +130,17 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: "none",
+                md: "flex",
+                justifyContent: "flex-end",
+                marginRight: 4,
+              },
+            }}
+          >
             {menuItems.map((menu) => (
               <Button
                 component={Link}
@@ -160,6 +170,16 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <FavouritesList />
+            <Button
+              variant="contained"
+              sx={{
+                display: { xs: "none", md: "inline-flex" },
+                marginLeft: 1,
+                boxShadow: "none",
+              }}
+            >
+              Donate
+            </Button>
           </Box>
         </Toolbar>
       </Container>
