@@ -6,12 +6,13 @@ import LatestCats from "../components/LatestCats";
 import LatestBlog from "../components/LatestBlog";
 
 const IndexPage = ({ data }) => {
-  const { headline, heroImage, blocks } = data.allSanityHomePage.edges[0].node;
+  const { title, headline, heroImage, blocks } =
+    data.allSanityHomePage.edges[0].node;
   console.log("| data", blocks);
 
   return (
     <main>
-      <Hero headline={headline} image={heroImage} />
+      <Hero title={title} headline={headline} image={heroImage} />
       {blocks.map((block) => {
         return (
           <Block
@@ -36,6 +37,7 @@ export const query = graphql`
     allSanityHomePage {
       edges {
         node {
+          title
           headline
           id
           blocks {
@@ -49,12 +51,7 @@ export const query = graphql`
           }
           heroImage {
             asset {
-              gatsbyImageData(
-                fit: FILLMAX
-                placeholder: BLURRED
-                height: 400
-                width: 1920
-              )
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 600)
             }
           }
         }

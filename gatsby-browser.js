@@ -4,10 +4,10 @@ import { ContextProvider } from "./src/context/ContextProvider";
 
 // Styles
 import "./src/styles/index.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import "@fontsource/jost/300.css";
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/500.css";
+import "@fontsource/jost/700.css";
 
 // Logs when the client route changes
 // export const onRouteUpdate = ({ location, prevLocation }) => {

@@ -22,6 +22,22 @@ export function ContextProvider({ children }) {
       createTheme({
         palette: {
           mode,
+          primary: {
+            main: "#1876D2",
+          },
+          background: {
+            light: "#F4F4F4",
+            main: "#4a148c",
+            dark: "#4a148c",
+            contrastText: "rgba(0, 0, 0, 0.87)",
+          },
+        },
+        typography: {
+          fontFamily: "jost",
+          h1: {
+            fontSize: "2rem",
+            fontWeight: "semibold",
+          },
         },
       }),
     [mode]

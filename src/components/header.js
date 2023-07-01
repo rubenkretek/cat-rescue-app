@@ -126,6 +126,7 @@ function ResponsiveAppBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              textTransform: "none",
             }}
           >
             LOGO
@@ -147,7 +148,12 @@ function ResponsiveAppBar() {
                 to={`/${menu.node.page?.slug.current}`}
                 key={menu.node.id}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "black",
+                  display: "block",
+                  textTransform: "none",
+                }}
               >
                 {menu.node.label}
               </Button>
@@ -155,14 +161,24 @@ function ResponsiveAppBar() {
             <Button
               component={Link}
               to={`/adopt-a-cat/`}
-              sx={{ my: 2, color: "black", display: "block" }}
+              sx={{
+                my: 2,
+                color: "black",
+                display: "block",
+                textTransform: "none",
+              }}
             >
               Adopt a cat
             </Button>
             <Button
               component={Link}
               to={`/contact-us`}
-              sx={{ my: 2, color: "black", display: "block" }}
+              sx={{
+                my: 2,
+                color: "black",
+                display: "block",
+                textTransform: "none",
+              }}
             >
               Contact Us
             </Button>

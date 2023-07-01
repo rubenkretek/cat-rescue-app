@@ -4,15 +4,13 @@ import React from "react";
 import Header from "./header";
 import Footer from "./footer";
 
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
-        {children}
-      </Container>
+      <Box>{children}</Box>
       <Footer />
     </>
   );
