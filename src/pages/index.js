@@ -2,8 +2,8 @@ import { graphql } from "gatsby";
 import * as React from "react";
 import Hero from "../components/Hero";
 import Block from "../components/Block";
-import LatestCats from "../components/LatestCats";
-import LatestBlog from "../components/LatestBlog";
+// import LatestCats from "../components/LatestCats";
+// import LatestBlog from "../components/LatestBlog";
 
 const IndexPage = ({ data }) => {
   const { title, headline, heroImage, blocks } =
@@ -22,8 +22,8 @@ const IndexPage = ({ data }) => {
           />
         );
       })}
-      <LatestCats />
-      <LatestBlog />
+      {/* <LatestCats /> */}
+      {/* <LatestBlog /> */}
     </main>
   );
 };
