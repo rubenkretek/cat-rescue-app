@@ -2,17 +2,19 @@ import { graphql } from "gatsby";
 import * as React from "react";
 import Hero from "../components/Hero";
 import Block from "../components/Block";
+import IntroSection from "../components/IntroSection";
 // import LatestCats from "../components/LatestCats";
 // import LatestBlog from "../components/LatestBlog";
 
 const IndexPage = ({ data }) => {
-  const { title, headline, heroImage, blocks } =
+  const { title, headline, heroImage, blocks, introParagraph, introTitle } =
     data.allSanityHomePage.edges[0].node;
   console.log("| data", blocks);
 
   return (
     <main>
       <Hero title={title} headline={headline} image={heroImage} />
+      <IntroSection title={introTitle} paragraph={introParagraph} />
       {blocks.map((block) => {
         return (
           <Block
@@ -40,6 +42,11 @@ export const query = graphql`
           title
           headline
           id
+          heroImage {
+            asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 600)
+            }
+          }
           blocks {
             description
             heroImage {
@@ -49,11 +56,8 @@ export const query = graphql`
             }
             title
           }
-          heroImage {
-            asset {
-              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED, width: 600)
-            }
-          }
+          introParagraph
+          introTitle
         }
       }
     }

@@ -38,6 +38,14 @@ export function ContextProvider({ children }) {
             fontSize: "2rem",
             fontWeight: "semibold",
           },
+          h2: {
+            fontSize: "1.4rem",
+            fontWeight: "semibold",
+            marginBottom: "0.5rem",
+            "@media (min-width: 600px)": {
+              fontSize: "1.6rem",
+            },
+          },
         },
       }),
     [mode]
